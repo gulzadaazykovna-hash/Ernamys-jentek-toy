@@ -6,7 +6,7 @@
     <title>Эрнамыстын Жентек Тоюна Чакыруу</title>
     <style>
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
             background-color: #f0f7fc; 
             color: #2c3e50;
             text-align: center;
@@ -15,35 +15,35 @@
         }
         .card {
             background: white;
-            max-width: 500px;
+            max-width: 450px;
             margin: 20px auto;
-            padding: 35px 20px;
+            padding: 30px 20px;
             border-radius: 20px;
-            box-shadow: 0 4px 25px rgba(52, 152, 219, 0.2);
-            border: 2px solid #3498db; 
+            box-shadow: 0 4px 25px rgba(52, 152, 219, 0.15);
+            border: 1px solid #d4e9f7; 
         }
         .ornament {
-            font-size: 24px;
+            font-size: 22px;
             color: #3498db;
             margin: 10px 0;
         }
         h1 { 
             color: #2980b9; 
-            font-size: 28px; 
+            font-size: 26px; 
             margin: 10px 0;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
         .baby-name {
-            font-size: 32px;
+            font-size: 30px;
             color: #3498db;
             font-weight: bold;
             display: block;
             margin: 15px 0;
         }
         .text {
-            font-size: 18px;
-            line-height: 1.7;
+            font-size: 17px;
+            line-height: 1.6;
             margin: 20px 0;
         }
         .info-block {
@@ -52,60 +52,62 @@
             border-radius: 12px;
             padding: 15px;
             margin: 25px 0;
-            font-size: 18px;
+            font-size: 17px;
             text-align: left;
         }
         .info-item {
-            margin: 12px 0;
+            margin: 10px 0;
             display: flex;
             align-items: center;
         }
         .icon {
-            font-size: 24px;
+            font-size: 22px;
             margin-right: 15px;
-            min-width: 30px;
+            min-width: 25px;
         }
         
-        /* Таймер точь-в-точь как в оригинале */
+        /* Таймер */
         .countdown {
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
             align-items: center;
             background: #e8f4fd;
             padding: 15px;
             border-radius: 12px;
-            border: 1px dashed #3498db;
             margin: 20px 0;
         }
         .countdown-item { 
-            font-size: 14px;
+            font-size: 13px;
             color: #2c3e50;
+            width: 60px;
         }
         .countdown-item span {
             display: block;
-            font-size: 28px;
+            font-size: 24px;
             font-weight: bold;
             color: #2980b9;
         }
         .divider {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: bold;
             color: #2980b9;
-            padding-bottom: 20px;
+            margin: 0 5px;
+            padding-bottom: 18px;
         }
 
-        /* Форма опроса как в примере */
+        /* Форма опроса */
         .rsvp-form {
-            background: #fdfdfd;
-            padding: 25px 20px;
+            background: #fff;
+            padding: 20px;
             border-radius: 15px;
             text-align: left;
-            border-top: 4px solid #3498db;
+            border: 1px solid #e8f4fd;
             margin-top: 30px;
         }
         .rsvp-form h3 { 
             text-align: center; 
             color: #2980b9; 
+            margin-top: 0;
             margin-bottom: 20px;
         }
         .radio-option {
@@ -113,45 +115,41 @@
             align-items: center;
             margin: 15px 0;
             cursor: pointer;
-            font-size: 17px;
+            font-size: 16px;
         }
         .radio-option input {
             margin-right: 12px;
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             cursor: pointer;
         }
         
-        /* Каунтер как в примере */
+        /* Счетчик коноктор */
         .guest-counter {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin: 25px 0;
+            margin: 20px 0;
             padding-top: 15px;
             border-top: 1px solid #e8f4fd;
         }
         .counter-controls {
             display: flex;
             align-items: center;
-            background: #e8f4fd;
-            border-radius: 20px;
-            padding: 2px;
         }
         .counter-btn {
-            background: white;
+            background: #e8f4fd;
             color: #2980b9;
-            border: 1px solid #d4e9f7;
-            width: 36px;
-            height: 36px;
+            border: none;
+            width: 34px;
+            height: 34px;
             border-radius: 50%;
-            font-size: 20px;
+            font-size: 18px;
             cursor: pointer;
             font-weight: bold;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
         #guestCount { 
             font-size: 18px; 
@@ -168,15 +166,32 @@
             color: white;
             border: none;
             padding: 14px;
-            font-size: 18px;
-            border-radius: 25px;
+            font-size: 17px;
+            border-radius: 10px;
             cursor: pointer;
             font-weight: bold;
-            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
-            transition: all 0.2s;
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.2);
+            margin-top: 10px;
         }
-        .submit-btn:hover {
-            background: #2980b9;
+
+        /* Той ээлери */
+        .hosts-block {
+            margin-top: 35px;
+            padding-top: 20px;
+            border-top: 1px dashed #3498db;
+            font-size: 18px;
+            color: #2980b9;
+        }
+        .hosts-title {
+            font-size: 14px;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+        .hosts-names {
+            font-weight: bold;
+            font-size: 20px;
         }
     </style>
 </head>
@@ -203,11 +218,11 @@
             </div>
             <div class="info-item">
                 <span class="icon">📍</span>
-                <div><strong>Дареги: Фрунзе 57</strong> Салкын Жай рестораны</div>
+                <div><strong>Дареги:</strong> «Салкын Жай» рестораны, Фрунзе көчөсү, 57</div>
             </div>
         </div>
 
-        <!-- ТАЙМЕР В СТИЛЕ ОРИГИНАЛА -->
+        <!-- ТАЙМЕР -->
         <div class="countdown">
             <div class="countdown-item"><span id="days">00</span>күн</div>
             <div class="divider">:</div>
@@ -218,26 +233,26 @@
             <div class="countdown-item"><span id="seconds">00</span>секунд</div>
         </div>
 
-        <!-- ОПРОС В СТИЛЕ ОРИГИНАЛА -->
+        <!-- ОПРОС -->
         <div class="rsvp-form">
-            <h3>Келесизби?</h3>
+            <h3>Тойго келесизби?</h3>
             
             <label class="radio-option">
-                <input type="radio" name="attendance" value="Ооба, барам" checked onclick="toggleGuests(true)">
-                <span>Ооба, барам</span>
+                <input type="radio" name="attendance" value="Ооба, буюрса барабыз" checked onclick="toggleGuests(true)">
+                <span>Ооба, буюрса барабыз</span>
             </label>
             
             <label class="radio-option">
-                <input type="radio" name="attendance" value="Мен жубайым менен барам" onclick="toggleGuests(true)">
-                <span>Мен жубайым менен барам</span>
+                <input type="radio" name="attendance" value="Жубайым (жолдошум) менен барам" onclick="toggleGuests(true)">
+                <span>Жубайым (жолдошум) менен барам</span>
             </label>
             
             <label class="radio-option">
-                <input type="radio" name="attendance" value="Бара албайм" onclick="toggleGuests(false)">
+                <input type="radio" name="attendance" value="Тилекке каршы, бара албайм" onclick="toggleGuests(false)">
                 <span>Бара албайм</span>
             </label>
 
-            <!-- Каунтер конокторго -->
+            <!-- КОНОКТОРДУН САНЫ -->
             <div class="guest-counter" id="counterSection">
                 <span>Канча адам менен келесиз?</span>
                 <div class="counter-controls">
@@ -249,10 +264,15 @@
 
             <button type="button" class="submit-btn" onclick="sendToWhatsApp()">Жөнөтүү</button>
         </div>
+
+        <!-- ТОЙ ЭЭЛЕРИ -->
+        <div class="hosts-block">
+            <div class="hosts-title">Той ээлери:</div>
+            <div class="hosts-names">Айтбек & Айзада</div>
+        </div>
     </div>
 
     <script>
-        // Таймер датасы
         const eventDate = new Date(2026, 10, 8, 18, 0, 0).getTime();
 
         const timer = setInterval(function() {
@@ -275,7 +295,6 @@
             }
         }, 1000);
 
-        // Каунтер логикасы
         let currentCount = 1;
         function changeCount(amount) {
             currentCount += amount;
@@ -284,14 +303,7 @@
         }
 
         function toggleGuests(show) {
-            document.getElementById("counterSection").style.style.display = show ? "flex" : "none";
+            document.getElementById("counterSection").style.display = show ? "flex" : "none";
         }
 
-        // Надежный метод отправки в WhatsApp
         function sendToWhatsApp() {
-            const myPhoneNumber = "996707366366"; 
-            const selectedRadio = document.querySelector('input[name="attendance"]:checked');
-            const attendance = selectedRadio ? selectedRadio.value : "Ооба, барам";
-            
-            let message = `Жооп: *${attendance}*`;
-            if (attendance !== "Бара албайм") {
