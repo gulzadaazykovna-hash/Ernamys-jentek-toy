@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Эрнамыстын Жентек Тоюна Чакыруу</title>
+    <title>Ернамыстын Жентек Тоюна Чакыруу</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
@@ -11,8 +11,100 @@
             color: #2c3e50;
             text-align: center;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            overflow-x: hidden;
         }
+
+        /* КОНВЕРТТИН СТИЛДЕРИ */
+        .envelope-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f0f7fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+        }
+        .envelope {
+            position: relative;
+            width: 280px;
+            height: 180px;
+            background: #3498db;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .envelope:hover {
+            transform: scale(1.03);
+        }
+        /* Конверттин үстүнкү капкагы */
+        .envelope::before {
+            content: '';
+            position: absolute;
+            top: -140px;
+            left: 0;
+            border-left: 140px solid transparent;
+            border-right: 140px solid transparent;
+            border-bottom: 140px solid #2980b9;
+            transform-origin: bottom;
+            transition: transform 0.5s ease-in-out;
+            z-index: 3;
+        }
+        /* Конверт ачылгандагы капкактын анимациясы */
+        .envelope.open::before {
+            transform: rotateX(180px) translateY(140px);
+            border-bottom-color: #3498db;
+            z-index: 1;
+        }
+        .envelope::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 140px solid transparent;
+            border-right: 140px solid transparent;
+            border-bottom: 180px solid #3498db;
+            z-index: 2;
+            border-radius: 0 0 10px 10px;
+        }
+        .envelope-text {
+            position: absolute;
+            top: 40%;
+            width: 100%;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            z-index: 4;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* НЕГИЗГИ ЧАКЫРУУ КАРТАСЫ */
+        .main-content {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease-in-out;
+            padding: 20px;
+            display: none;
+        }
+        .main-content.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         .card {
             background: white;
             max-width: 450px;
@@ -95,7 +187,7 @@
             padding-bottom: 18px;
         }
 
-        /* Форма опроса */
+        /* Форма опроса коноктор */
         .rsvp-form {
             background: #fff;
             padding: 20px;
@@ -124,7 +216,6 @@
             cursor: pointer;
         }
         
-        /* Счетчик коноктор */
         .guest-counter {
             display: flex;
             align-items: center;
@@ -159,7 +250,6 @@
             color: #2c3e50;
         }
 
-        /* Кнопка отправки */
         .submit-btn {
             width: 100%;
             background: #3498db;
@@ -174,7 +264,6 @@
             margin-top: 10px;
         }
 
-        /* Той ээлери */
         .hosts-block {
             margin-top: 35px;
             padding-top: 20px;
@@ -197,113 +286,50 @@
 </head>
 <body>
 
-    <div class="card">
-        <div class="ornament">◆ ⚜ ◆</div>
-        <h1>Жентек той</h1>
-        <div class="ornament">✦ ✦ ✦</div>
-        
-        <p class="text">
-            <b>Кадырлуу коноктор, ардактуу агайын-туугандар, достор жана замандаштар!</b><br><br>
-            Сиздерди уулубуз <span class="baby-name">Эрнамыстын</span> жентек тоюна арналган салтанаттуу ак дасторконубуздун кадырлуу коногу болууга чын жүрөктөн чакырабыз!
-        </p>
-
-        <div class="info-block">
-            <div class="info-item">
-                <span class="icon">📅</span>
-                <div><strong>Күнү:</strong> 8-ноябрь, 2026-жыл</div>
-            </div>
-            <div class="info-item">
-                <span class="icon">⏰</span>
-                <div><strong>Убактысы:</strong> Саат 18:00</div>
-            </div>
-            <div class="info-item">
-                <span class="icon">📍</span>
-                <div><strong>Дареги:</strong> «Салкын Жай» рестораны, Фрунзе көчөсү, 57</div>
-            </div>
-        </div>
-
-        <!-- ТАЙМЕР -->
-        <div class="countdown">
-            <div class="countdown-item"><span id="days">00</span>күн</div>
-            <div class="divider">:</div>
-            <div class="countdown-item"><span id="hours">00</span>саат</div>
-            <div class="divider">:</div>
-            <div class="countdown-item"><span id="minutes">00</span>мүнөт</div>
-            <div class="divider">:</div>
-            <div class="countdown-item"><span id="seconds">00</span>секунд</div>
-        </div>
-
-        <!-- ОПРОС -->
-        <div class="rsvp-form">
-            <h3>Тойго келесизби?</h3>
-            
-            <label class="radio-option">
-                <input type="radio" name="attendance" value="Ооба, буюрса барабыз" checked onclick="toggleGuests(true)">
-                <span>Ооба, буюрса барабыз</span>
-            </label>
-            
-            <label class="radio-option">
-                <input type="radio" name="attendance" value="Жубайым (жолдошум) менен барам" onclick="toggleGuests(true)">
-                <span>Жубайым (жолдошум) менен барам</span>
-            </label>
-            
-            <label class="radio-option">
-                <input type="radio" name="attendance" value="Тилекке каршы, бара албайм" onclick="toggleGuests(false)">
-                <span>Бара албайм</span>
-            </label>
-
-            <!-- КОНОКТОРДУН САНЫ -->
-            <div class="guest-counter" id="counterSection">
-                <span>Канча адам менен келесиз?</span>
-                <div class="counter-controls">
-                    <button type="button" class="counter-btn" onclick="changeCount(-1)">−</button>
-                    <span id="guestCount">1</span>
-                    <button type="button" class="counter-btn" onclick="changeCount(1)">+</button>
-                </div>
-            </div>
-
-            <button type="button" class="submit-btn" onclick="sendToWhatsApp()">Жөнөтүү</button>
-        </div>
-
-        <!-- ТОЙ ЭЭЛЕРИ -->
-        <div class="hosts-block">
-            <div class="hosts-title">Той ээлери:</div>
-            <div class="hosts-names">Айтбек & Айзада</div>
+    <!-- АЧЫЛУУЧУ КОНВЕРТ БЛОГУ -->
+    <div class="envelope-wrapper" id="envelopeWrapper">
+        <div class="envelope" id="myEnvelope" onclick="openEnvelope()">
+            <div class="envelope-text">Ачуу ✉</div>
         </div>
     </div>
 
-    <script>
-        const eventDate = new Date(2026, 10, 8, 18, 0, 0).getTime();
+    <!-- НЕГИЗГИ БАТА БАРАКЧАСЫ -->
+    <div class="main-content" id="mainContent">
+        <div class="card">
+            <div class="ornament">◆ ⚜ ◆</div>
+            <h1>Жентек той</h1>
+            <div class="ornament">✦ ✦ ✦</div>
+            
+            <p class="text">
+                <b>Кадырлуу коноктор, ардактуу агайын-туугандар, достор жана замандаштар!</b><br><br>
+                Сиздерди уулубуз <span class="baby-name">Ернамыстын</span> жентек тоюна арналган салтанаттуу ак дасторконубуздун кадырлуу коногу болууга чын жүрөктөн чакырабыз!
+            </p>
 
-        const timer = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = eventDate - now;
+            <div class="info-block">
+                <div class="info-item">
+                    <span class="icon">📅</span>
+                    <div><strong>Күнү:</strong> 8-ноябрь, 2026-жыл</div>
+                </div>
+                <div class="info-item">
+                    <span class="icon">⏰</span>
+                    <div><strong>Убактысы:</strong> Саат 18:00</div>
+                </div>
+                <div class="info-item">
+                    <span class="icon">📍</span>
+                    <div><strong>Дареги:</strong> «Салкын-Жай» рестораны, Фрунзе көчөсү, 57</div>
+                </div>
+            </div>
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            <!-- ТАЙМЕР -->
+            <div class="countdown">
+                <div class="countdown-item"><span id="days">00</span>күн</div>
+                <div class="divider">:</div>
+                <div class="countdown-item"><span id="hours">00</span>саат</div>
+                <div class="divider">:</div>
+                <div class="countdown-item"><span id="minutes">00</span>мүнөт</div>
+                <div class="divider">:</div>
+                <div class="countdown-item"><span id="seconds">00</span>секунд</div>
+            </div>
 
-            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
-
-            if (distance < 0) {
-                clearInterval(timer);
-                document.querySelector(".countdown").innerHTML = "<h3>Той башталды!</h3>";
-            }
-        }, 1000);
-
-        let currentCount = 1;
-        function changeCount(amount) {
-            currentCount += amount;
-            if (currentCount < 1) currentCount = 1;
-            document.getElementById("guestCount").innerText = currentCount;
-        }
-
-        function toggleGuests(show) {
-            document.getElementById("counterSection").style.display = show ? "flex" : "none";
-        }
-
-        function sendToWhatsApp() {
+            <!-- СУРАМЖЫЛОО ФОРМАСЫ -->
+            <div class="rsvp-form">
