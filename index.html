@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ернамыстын Жентек Тоюна Чакыруу</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #f0f7fc; 
+            color: #2c3e50;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .card {
+            background: white;
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 35px 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 25px rgba(52, 152, 219, 0.2);
+            border: 2px solid #3498db; 
+        }
+        .ornament {
+            font-size: 24px;
+            color: #3498db;
+            margin: 10px 0;
+        }
+        h1 { 
+            color: #2980b9; 
+            font-size: 28px; 
+            margin: 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .baby-name {
+            font-size: 32px;
+            color: #3498db;
+            font-weight: bold;
+            display: block;
+            margin: 15px 0;
+        }
+        .text {
+            font-size: 18px;
+            line-height: 1.7;
+            margin: 20px 0;
+        }
+        .audio-player {
+            margin: 15px 0 25px 0;
+            background: #e8f4fd;
+            padding: 10px;
+            border-radius: 30px;
+            display: inline-block;
+        }
+        .info-block {
+            background: #e8f4fd;
+            border: 1px solid #d4e9f7;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 25px 0;
+            font-size: 18px;
+            text-align: left;
+        }
+        .info-item {
+            margin: 12px 0;
+            display: flex;
+            align-items: center;
+        }
+        .icon {
+            font-size: 24px;
+            margin-right: 15px;
+            min-width: 30px;
+        }
+        .countdown {
+            display: flex;
+            justify-content: space-around;
+            background: #e8f4fd;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px dashed #3498db;
+            margin: 10px 0 30px 0;
+        }
+        .countdown-item { 
+            font-size: 14px; 
+        }
+        .countdown-item span {
+            display: block;
+            font-size: 26px;
+            font-weight: bold;
+            color: #2980b9;
+        }
+        .rsvp-form {
+            background: #fdfdfd;
+            padding: 25px 20px;
+            border-radius: 15px;
+            text-align: left;
+            border-top: 4px solid #3498db;
+        }
+        .rsvp-form h3 { 
+            text-align: center; 
+            color: #2980b9; 
+        }
+        .radio-group label { 
+            display: block; 
+            margin: 15px 0; 
+            cursor: pointer; 
+        }
+        .guest-counter {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+        .counter-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            font-size: 22px;
+            cursor: pointer;
+        }
+        #guestCount { 
+            font-size: 20px; 
+            font-weight: bold; 
+        }
+        .submit-btn {
+            width: 100%;
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 14px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="ornament">◆ ⚜ ◆</div>
+        <h1>Бешик той & Жентек той</h1>
+        <div class="ornament">✦ ✦ ✦</div>
+        
+        <div class="audio-player">
+            <audio controls id="bgMusic" loop style="height: 40px;">
+                <source src="https://soundhelix.com" type="audio/mpeg">
+            </audio>
+        </div>
+        
+        <p class="text">
+            <b>Кадырлуу коноктор, ардактуу агайын-туугандар, достор жана замандаштар!</b><br><br>
+            Сиздерди уулубуз <span class="baby-name">Ернамыстын</span> бешик жана жентек тоюна арналган салтанаттуу ак дасторконубуздун кадырлуу коногу болууга чын жүрөктөн чакырабыз!
+        </p>
+
+        <div class="info-block">
+            <div class="info-item">
+                <span class="icon">📅</span>
+                <div><strong>Күнү:</strong> 8-ноябрь, 2026-жыл</div>
+            </div>
+            <div class="info-item">
+                <span class="icon">⏰</span>
+                <div><strong>Убактысы:</strong> Саат 18:00</div>
+            </div>
+            <div class="info-item">
+                <span class="icon">📍</span>
+                <div><strong>Дареги:</strong> «Ак-Бата» рестораны</div>
+            </div>
+        </div>
+
+        <div class="countdown">
+            <div class="countdown-item"><span id="days">00</span>күн</div>
+            <div class="countdown-item"><span id="hours">00</span>саат</div>
+            <div class="countdown-item"><span id="minutes">00</span>мүнөт</div>
+            <div class="countdown-item"><span id="seconds">00</span>секунд</div>
+        </div>
+
+        <div class="rsvp-form">
+            <h3>Тойго келесизби?</h3>
+            <div class="radio-group">
+                <label><input type="radio" name="attendance" value="Ооба, буюрса барабыз" checked onclick="toggleGuests(true)"> Ооба, буюрса барабыз</label>
+                <label><input type="radio" name="attendance" value="Жубайым (жолдошум) менен барам" onclick="toggleGuests(true)"> Жубайым менен барам</label>
+                <label><input type="radio" name="attendance" value="Тилекке каршы, бара албайм" onclick="toggleGuests(false)"> Бара албайм</label>
+            </div>
+
+            <div class="guest-counter" id="counterSection">
+                <span>Канча адам менен келесиз?</span>
+                <div>
+                    <button type="button" class="counter-btn" onclick="changeCount(-1)">−</button>
+                    <span id="guestCount">1</span>
+                    <button type="button" class="counter-btn" onclick="changeCount(1)">+</button>
+                </div>
+            </div>
+
+            <button type="button" class="submit-btn" onclick="sendToWhatsApp()">Жөнөтүү</button>
+        </div>
+    </div>
+
+    <script>
+        const eventDate = new Date(2026, 10, 8, 18, 0, 0).getTime();
+
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+
+            if (distance < 0) {
+                clearInterval(timer);
+                document.querySelector(".countdown").innerHTML = "<h3>Той башталды!</h3>";
+            }
+        }, 1000);
+
+        let currentCount = 1;
+        function changeCount(amount) {
+            currentCount += amount;
+            if (currentCount < 1) currentCount = 1;
+            document.getElementById("guestCount").innerText = currentCount;
+        }
+
+        function toggleGuests(show) {
+            document.getElementById("counterSection").style.display = show ? "flex" : "none";
+        }
+
+        function sendToWhatsApp() {
+            const myPhoneNumber = "996707366366"; 
+            const attendance = document.querySelector('input[name="attendance"]:checked').value;
+            let message = `Жооп: *${attendance}*`;
+            if (attendance !== "Тилекке каршы, бара албайм") {
+                message += `%0AКоноктордун саны: *${currentCount}*`;
+            }
+            const whatsappUrl = `https://whatsapp.com{myPhoneNumber}&text=${message}`;
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
