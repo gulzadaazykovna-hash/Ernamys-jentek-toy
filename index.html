@@ -46,13 +46,6 @@
             line-height: 1.7;
             margin: 20px 0;
         }
-        .audio-player {
-            margin: 15px 0 25px 0;
-            background: #e8f4fd;
-            padding: 10px;
-            border-radius: 30px;
-            display: inline-block;
-        }
         .info-block {
             background: #e8f4fd;
             border: 1px solid #d4e9f7;
@@ -121,6 +114,7 @@
             border-radius: 50%;
             font-size: 22px;
             cursor: pointer;
+            line-height: 1;
         }
         #guestCount { 
             font-size: 20px; 
@@ -143,18 +137,12 @@
 
     <div class="card">
         <div class="ornament">◆ ⚜ ◆</div>
-        <h1>Бешик той & Жентек той</h1>
+        <h1>Жентек той</h1>
         <div class="ornament">✦ ✦ ✦</div>
-        
-        <div class="audio-player">
-            <audio controls id="bgMusic" loop style="height: 40px;">
-                <source src="https://soundhelix.com" type="audio/mpeg">
-            </audio>
-        </div>
         
         <p class="text">
             <b>Кадырлуу коноктор, ардактуу агайын-туугандар, достор жана замандаштар!</b><br><br>
-            Сиздерди уулубуз <span class="baby-name">Ернамыстын</span> бешик жана жентек тоюна арналган салтанаттуу ак дасторконубуздун кадырлуу коногу болууга чын жүрөктөн чакырабыз!
+            Сиздерди уулубуз <span class="baby-name">Ернамыстын</span> жентек тоюна арналган салтанаттуу ак дасторконубуздун кадырлуу коногу болууга чын жүрөктөн чакырабыз!
         </p>
 
         <div class="info-block">
@@ -236,9 +224,11 @@
 
         function sendToWhatsApp() {
             const myPhoneNumber = "996707366366"; 
-            const attendance = document.querySelector('input[name="attendance"]:checked').value;
+            const selectedRadio = document.querySelector('input[name="attendance"]:checked');
+            const attendance = selectedRadio ? selectedRadio.value : "Ооба, буюрса барабыз";
+            
             let message = `Жооп: *${attendance}*`;
-            if (attendance !== "Тилекке каршы, бара албайм") {
+            if (attendance !== "Тилекке каршы, бара албайм" && attendance !== "Бара албайм") {
                 message += `%0AКоноктордун саны: *${currentCount}*`;
             }
             const whatsappUrl = `https://whatsapp.com{myPhoneNumber}&text=${message}`;
