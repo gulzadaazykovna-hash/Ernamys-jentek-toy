@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ернамыстын Жентек Тоюна Чакыруу</title>
+    <title>Эрнамыстын Жентек Тоюна Чакыруу</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
@@ -12,10 +12,9 @@
             text-align: center;
             margin: 0;
             padding: 0;
-            overflow-x: hidden;
         }
 
-        /* КОНВЕРТТИН СТИЛДЕРИ */
+        /* КОНВЕРТ */
         .envelope-wrapper {
             position: fixed;
             top: 0;
@@ -24,76 +23,29 @@
             height: 100%;
             background-color: #f0f7fc;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 1000;
-            transition: opacity 0.5s ease-in-out;
         }
-        .envelope {
-            position: relative;
-            width: 280px;
-            height: 180px;
-            background: #3498db;
-            border-radius: 0 0 10px 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            cursor: pointer;
-        }
-        
-        /* Конверттин үстүнкү капкагы */
-        .envelope::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            border-left: 140px solid transparent;
-            border-right: 140px solid transparent;
-            border-top: 100px solid #2980b9;
-            transform-origin: top;
-            transition: transform 0.4s ease-in-out;
-            z-index: 3;
-        }
-        
-        /* Конверт ачылгандагы капкактын анимациясы */
-        .envelope.open::before {
-            transform: rotateX(180deg) translateY(100px);
-            z-index: 1;
-        }
-        
-        .envelope::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 0;
-            border-left: 140px solid transparent;
-            border-right: 140px solid transparent;
-            border-bottom: 180px solid #3498db;
-            z-index: 2;
-            border-radius: 0 0 10px 10px;
-        }
-        .envelope-text {
-            position: absolute;
-            top: 55%;
-            left: 0;
-            width: 100%;
+        .open-btn {
+            background-color: #3498db;
             color: white;
-            font-size: 20px;
+            border: none;
+            padding: 18px 45px;
+            font-size: 22px;
             font-weight: bold;
-            z-index: 4;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+            margin-top: 20px;
+            letter-spacing: 1px;
         }
 
-        /* НЕГИЗГИ ЧАКЫРУУ КАРТАСЫ */
+        /* НЕГИЗГИ ЧАКЫРУУ */
         .main-content {
-            opacity: 0;
-            transition: opacity 0.6s ease-in-out;
             padding: 20px;
             display: none;
-        }
-        .main-content.show {
-            display: block;
-            opacity: 1;
         }
 
         .card {
@@ -115,10 +67,9 @@
             font-size: 26px; 
             margin: 10px 0;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
         .baby-name {
-            font-size: 30px;
+            font-size: 32px;
             color: #3498db;
             font-weight: bold;
             display: block;
@@ -178,7 +129,7 @@
             padding-bottom: 18px;
         }
 
-        /* Форма опроса коноктор */
+        /* Сурамжылоо */
         .rsvp-form {
             background: #fff;
             padding: 20px;
@@ -204,7 +155,6 @@
             margin-right: 12px;
             width: 18px;
             height: 18px;
-            cursor: pointer;
         }
         
         .guest-counter {
@@ -228,7 +178,6 @@
             border-radius: 50%;
             font-size: 18px;
             cursor: pointer;
-            font-weight: bold;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -238,7 +187,6 @@
             font-weight: bold; 
             width: 40px;
             text-align: center;
-            color: #2c3e50;
         }
 
         .submit-btn {
@@ -251,7 +199,6 @@
             border-radius: 10px;
             cursor: pointer;
             font-weight: bold;
-            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.2);
             margin-top: 10px;
         }
 
@@ -266,7 +213,6 @@
             font-size: 14px;
             color: #7f8c8d;
             text-transform: uppercase;
-            letter-spacing: 1px;
             margin-bottom: 5px;
         }
         .hosts-names {
@@ -277,14 +223,14 @@
 </head>
 <body>
 
-    <!-- АЧЫЛУУЧУ КОНВЕРТ БЛОГУ -->
-    <div class="envelope-wrapper" id="envelopeWrapper" onclick="openEnvelope()">
-        <div class="envelope" id="myEnvelope">
-            <div class="envelope-text">Ачуу ✉</div>
-        </div>
+    <!-- КОНВЕРТ БЛОГУ -->
+    <div class="envelope-wrapper" id="envelopeWrapper">
+        <div style="font-size: 75px; margin-bottom: 15px; color: #3498db;">✉</div>
+        <div style="font-size: 18px; color: #7f8c8d; font-style: italic; margin-bottom: 10px;">Сизге чакыруу кат келди</div>
+        <button class="open-btn" onclick="openEnvelope()">АЧУУ</button>
     </div>
 
-    <!-- НЕГИЗГИ БАТА БАРАКЧАСЫ -->
+    <!-- ЧАКЫРУУ БАРАКЧАСЫ -->
     <div class="main-content" id="mainContent">
         <div class="card">
             <div class="ornament">◆ ⚜ ◆</div>
@@ -293,7 +239,7 @@
             
             <p class="text">
                 <b>Кадырлуу коноктор, ардактуу агайын-туугандар, достор жана замандаштар!</b><br><br>
-                Сиздерди уулубуз <span class="baby-name">Ернамыстын</span> жентек тоюна арналган салтанаттуу ак дасторконубуздун кадырлуу коногу болууга чын жүрөктөн чакырабыз!
+                Сиздерди уулубуз <span class="baby-name">Эрнамыстын</span> жентек тоюна арналган салтанаттуу ак дасторконубуздун кадырлуу коногу болууга чын жүрөктөн чакырабыз!
             </p>
 
             <div class="info-block">
@@ -327,8 +273,44 @@
                 <h3>Тойго келесизби?</h3>
                 
                 <label class="radio-option">
-                    <input type="radio" name="attendance" value="Ооба, буюрса барабыз" checked onclick="toggleGuests(true)">
+                    <input type="radio" name="attendance" value="Ооба, buürsa барабыз" checked onclick="toggleGuests(true)">
                     <span>Ооба, буюрса барабыз</span>
                 </label>
                 
                 <label class="radio-option">
+                    <input type="radio" name="attendance" value="Жубайым (жолдошум) менен барам" onclick="toggleGuests(true)">
+                    <span>Жубайым (жолдошум) менен барам</span>
+                </label>
+                
+                <label class="radio-option">
+                    <input type="radio" name="attendance" value="Тилекке каршы, бара албайм" onclick="toggleGuests(false)">
+                    <span>Бара албайм</span>
+                </label>
+
+                <div class="guest-counter" id="counterSection">
+                    <span>Канча адам менен келесиз?</span>
+                    <div class="counter-controls">
+                        <button type="button" class="counter-btn" onclick="changeCount(-1)">−</button>
+                        <span id="guestCount">1</span>
+                        <button type="button" class="counter-btn" onclick="changeCount(1)">+</button>
+                    </div>
+                </div>
+
+                <button type="button" class="submit-btn" onclick="sendToWhatsApp()">Жөнөтүү</button>
+            </div>
+
+            <div class="hosts-block">
+                <div class="hosts-title">Той ээлери:</div>
+                <div class="hosts-names">Айтбек & Айзада</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openEnvelope() {
+            document.getElementById('envelopeWrapper').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+        }
+
+        // ТАЙМЕР ДАТАСЫ (8 Ноября 2026)
+        var eventDate = new Date(2026, 10, 8, 18, 0, 0).getTime();
